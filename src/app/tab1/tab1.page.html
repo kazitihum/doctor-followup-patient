@@ -1,0 +1,106 @@
+<ion-header>
+  <ion-toolbar color="danger">
+      <div text-center>
+          <ion-title>
+              Doctor Follow Up
+          </ion-title>
+      </div>
+      <ion-buttons slot="secondary" (click)="logout()">
+        <ion-button fill="solid">
+          <ion-icon slot="end" name="log-out"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+     
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="con" >              
+                        
+    <ion-searchbar color="danger" [(ngModel)]="searchTerm" placeholder="Doctor Search" (ionChange)="doctorSearch($event)"></ion-searchbar>  
+
+    <ion-list >
+      <ion-item *ngFor="let doc of (docData  )" (click)="doctorDetails(doc.id)" >
+        <ion-label>{{doc.first_name}} {{doc.last_name}}</ion-label>
+      </ion-item>
+    </ion-list>
+
+    
+    <ion-grid >
+      <!-- Fist Row Start-->
+      <ion-row justify-content-center>
+          <ion-col align-self-center size-md="6" size-lg="5" size-xs="6"> 
+              <ion-card  justify-content-center class="xyz" [routerLink]="'/appointment-call'" routerDirection="forward"> 
+                  <ion-item text-center>
+                      <ion-label> <ion-icon name="medkit"  style="zoom:3.0;"></ion-icon></ion-label>
+                    </ion-item>
+                  <ion-card-content text-center>
+                    <ion-card-title> <h4><b>Appointment For Call</b></h4></ion-card-title>
+                  </ion-card-content>
+                </ion-card>
+          </ion-col>
+          <ion-col align-self-center size-md="6" size-lg="5" size-xs="6"> 
+              <ion-card justify-content-center class="xyz" [routerLink]="'/create-followup'" routerDirection="forward"> 
+                  <ion-item text-center>
+                      <ion-label> <ion-icon name="medkit"  style="zoom:3.0;"></ion-icon></ion-label>
+                    </ion-item>
+                  <ion-card-content text-center >
+                    <ion-card-title> <h4><b>Create New Follow Up</b></h4></ion-card-title>
+                  </ion-card-content>
+                </ion-card>
+          </ion-col>
+      </ion-row>
+      <!-- First Row End -->
+
+      <!-- Second Row Start -->
+      <ion-row justify-content-center>
+          <ion-col align-self-center size-md="6" size-lg="5" size-xs="6"> 
+              <ion-card justify-content-center class="xyz" [routerLink]="'/myfollowup-his'"> 
+                  <ion-item text-center>
+                      <ion-label> <ion-icon name="medkit"  style="zoom:3.0;"></ion-icon></ion-label>
+                    </ion-item>
+                  <ion-card-content text-center>
+                    <ion-card-title> <h4><b>My FollowUp </b></h4></ion-card-title>
+                  </ion-card-content>
+                </ion-card>
+          </ion-col>
+          <ion-col align-self-center size-md="6" size-lg="5" size-xs="6"> 
+              <ion-card justify-content-center class="xyz"> 
+                  <ion-item text-center>
+                      <ion-label> <ion-icon name="medkit"  style="zoom:3.0;"></ion-icon></ion-label>
+                    </ion-item>
+                  <ion-card-content text-center>
+                    <ion-card-title> <h4><b>Necessary Health Tips</b></h4></ion-card-title>
+                  </ion-card-content>
+                </ion-card>
+          </ion-col>
+        </ion-row>
+        <!-- Second row end -->
+
+        <!-- Third row start -->
+        <ion-row justify-content-center>
+            <ion-col align-self-center size-md="6" size-lg="5" size-xs="6"> 
+                <ion-card justify-content-center class="xyz"> 
+                    <ion-item text-center>
+                        <ion-label> <ion-icon name="medkit"  style="zoom:3.0;"></ion-icon></ion-label>
+                      </ion-item>
+                    <ion-card-content text-center>
+                      <ion-card-title> <h4><b>Emergency Phone No.</b></h4></ion-card-title>
+                    </ion-card-content>
+                  </ion-card>
+            </ion-col>
+            <ion-col align-self-center size-md="6" size-lg="5" size-xs="6"> 
+                <ion-card justify-content-center class="xyz"> 
+                    <ion-item text-center>
+                        <ion-label> <ion-icon name="medkit"  style="zoom:3.0;"></ion-icon></ion-label>
+                      </ion-item>
+                    <ion-card-content text-center>
+                      <ion-card-title> <h4><b>Report Your Problem</b></h4></ion-card-title>
+                    </ion-card-content>
+                  </ion-card>
+            </ion-col>
+          </ion-row>
+
+          <!-- Third row end -->
+    </ion-grid>
+  
+</ion-content>

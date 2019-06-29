@@ -1,0 +1,83 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+          <ion-back-button defaultHref="/tabs"></ion-back-button>
+          </ion-buttons>
+          <ion-title>{{followup.disease_name}}</ion-title>
+      </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div *ngIf="followupData?.symptoms" >
+      <ion-item lines="none">
+          <h2 color="danger" slot="start">{{followup.disease_name.length > 25 ? followup.disease_name.substring(0,25)+"..." : followup.disease_name}}</h2>
+          <span slot="end">{{followup.date}}</span>
+        </ion-item>
+    
+        <ion-card>
+          <ion-item lines="none">
+            <ion-label slot="start">{{followup.doctor.name}}</ion-label>
+           
+          </ion-item>
+        </ion-card>
+        <ion-card>
+          <ion-item lines="none">
+            <ion-card-subtitle>Symptoms:</ion-card-subtitle>
+          </ion-item>
+          <ion-card-content>{{followup.child.symptoms}}</ion-card-content>
+        </ion-card>
+        <ion-card>
+          <ion-item lines="none"> <ion-card-subtitle>Description :</ion-card-subtitle></ion-item>
+          <ion-card-content>{{followup.child.description}}</ion-card-content>
+        </ion-card>
+        <br>
+        <ion-list>
+          <div text-center><span>File</span></div><br>
+            <ion-item *ngFor="let item of followupData.file" (click)='download(item.title)'>
+              <label>{{item.title}}</label>
+            </ion-item>
+        </ion-list>
+  </div>
+    
+  <div  *ngIf="followupData?.suggestions">
+      <ion-item lines="none">
+          <h2 color="danger" slot="start">{{followup.disease_name.length > 25 ? followup.disease_name.substring(0,25)+"..." : followup.disease_name}}</h2>
+          <span slot="end">{{followupData.created_at | date:'yyyy-MM-dd'}}</span>
+        </ion-item>
+  
+        <ion-card>
+          <ion-item lines="none">
+            <ion-label slot="start">{{followup.doctor.name}}</ion-label>
+          </ion-item>
+        </ion-card>
+        <ion-card>
+          <ion-item lines="none">
+            <ion-card-subtitle>My Suggestions:</ion-card-subtitle>
+          </ion-item>
+          <ion-card-content>{{followupData.suggestions}}</ion-card-content>
+        </ion-card>
+        <ion-card>
+          <ion-item lines="none"> <ion-card-subtitle>Comment :</ion-card-subtitle></ion-item>
+          <ion-card-content>{{followupData.description}}</ion-card-content>
+        </ion-card>
+        <br>
+        <ion-list>
+          <div text-center><span>File</span></div><br>
+            <ion-item *ngFor="let item of followupData.file" (click)='download(item.title)'>
+              <label>{{item.title}}</label>
+            </ion-item>
+        </ion-list>
+  </div>
+    
+    
+    
+    
+</ion-content>
+
+<ion-footer class="bar-positive foo"  color="primary" *ngIf="followupData?.suggestions">
+  <ion-toolbar transparent>
+    <div text-center>
+        <ion-button expand="full" fill="outline" (click)="replay()">Replay</ion-button>
+    </div>
+  </ion-toolbar>
+</ion-footer>

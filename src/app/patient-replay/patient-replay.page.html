@@ -1,0 +1,70 @@
+<ion-header >
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs"></ion-back-button>
+      </ion-buttons>
+    <ion-title>Follow Replay</ion-title>
+  </ion-toolbar>
+  </ion-header>
+  
+  <ion-content  padding >
+  
+
+  <ion-chip *ngIf="followup != null" >
+    <ion-avatar>
+      <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+    </ion-avatar>
+    <ion-label>{{followup.doctor.name}}</ion-label>
+    <ion-icon name="close-circle"></ion-icon>
+  </ion-chip>
+
+    <div justify-content-center align-items-center style="height: 100%">
+        <form #form="ngForm"  (ngSubmit)="createFollowup(form)" >
+            <ion-grid>
+              <ion-row color="primary" justify-content-center>
+                <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+                  <div text-center>
+                    <h3>Create Follow Replay</h3>
+                  </div>
+                  <div padding>
+                    <ion-item>
+                        <ion-textarea name="symptoms" rows="3" type="text" placeholder="New Symptoms" ngModel required></ion-textarea>
+                      </ion-item>
+                    <ion-item>
+                      <ion-textarea name="description" rows="5" type="text" placeholder="Description About Symptoms" ngModel required></ion-textarea>
+                    </ion-item><br>
+                    <div padding>
+                      <ion-button size="small"   expand="block" (click)="chooser()">Choose File</ion-button>
+                    </div>
+                    <br>
+                    <div >
+
+                      <ion-item *ngFor="let file of fileBuff;let i = index">
+                        <ion-label *ngIf="file">{{file.filename}}</ion-label>
+                      </ion-item>
+
+                    </div>
+                    <br><br>
+                    <ion-item justify-content-center lines="none">
+                      <ion-label ><b>Payment  Method</b></ion-label>  
+                    </ion-item>
+                    
+                    <ion-select placeholder="Select Payment Method" name="pay_status" ngModel >
+                      <ion-select-option value="female">Bkash/Rocket</ion-select-option>
+                      <ion-select-option value="male">Credit Card</ion-select-option>
+                    </ion-select>
+                    <ion-item>
+                      <ion-input name="transaction_number" type="text" placeholder="Transaction Number" ngModel required></ion-input>
+                    </ion-item>
+                  </div>
+                  <div padding>
+                    <ion-button size="large" type="submit" [disabled]="form.invalid" expand="block">Submit</ion-button>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </form>
+    </div>
+   
+  </ion-content>
+  

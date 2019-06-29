@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/tabs"></ion-back-button>
+        </ion-buttons>
+    <ion-title>{{docInfo.first_name}} {{docInfo.last_name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <br>
+  <ion-grid>
+      <div>
+        <ion-row justify-content-center>
+            <ion-avatar>
+                <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"><br>
+            </ion-avatar>
+        </ion-row><br>
+        <ion-row justify-content-center>
+          <ion-label align-self-center><b>{{docInfo.first_name}} {{docInfo.last_name}}</b></ion-label><br>
+        </ion-row>
+        <br>
+        <ion-row justify-content-center>
+            <ion-button shape="round" size="small">Create FollowUp</ion-button>
+            <ion-button shape="round" size="small">Create App. Call</ion-button>
+        </ion-row>
+        <br>
+
+        <ion-row justify-content-center>
+          <ion-col  size-md="6" size-lg="5" size-xs="6">
+              <ion-label><b>Current At</b></ion-label><br><br>
+              <ion-label><b>Specialist</b></ion-label><br><br>
+              <ion-label><b>Surgeon</b></ion-label><br><br>
+              <ion-label><b>Surgeon for</b></ion-label><br><br>
+              <ion-label><b>Degree</b></ion-label><br><br>
+              <ion-label><b>About</b></ion-label><br><br>
+          </ion-col>
+          <ion-col  size-md="6" size-lg="5" size-xs="6">
+              <ion-label>: {{docInfo.current_at}}</ion-label><br><br>
+              <ion-label>: {{docInfo.specialist}}</ion-label><br><br>
+              <ion-label>: {{docInfo.surgeon}}</ion-label><br><br>
+              <ion-label>: {{docInfo.surgeon_for}}</ion-label><br><br>
+              <ion-chip *ngFor="let degree of docInfo.degree">
+                <ion-label color="secondary" > {{degree.name}}</ion-label>
+              </ion-chip> 
+              <ion-label>: {{docInfo.about}}</ion-label><br><br>   
+          </ion-col>
+        </ion-row>
+      </div>
+  </ion-grid>
+</ion-content>
