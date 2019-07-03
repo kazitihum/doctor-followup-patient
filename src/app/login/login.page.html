@@ -1,40 +1,45 @@
-<ion-header >
-  <!-- <ion-toolbar color="primary">
-    <ion-title>FollowUp | Login</ion-title>
-  </ion-toolbar> -->
-</ion-header>
+<ion-content padding>
 
-<ion-content  padding >
-  <div justify-content-center align-items-center style="height: 100%; flex-direction: column">
-      <form #form="ngForm"  (ngSubmit)="login(form)" >
-          <ion-grid>
-            <ion-row color="primary" justify-content-center>
-              <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-                <div text-center>
-                  <h3>Patient Login</h3>
-                </div>
-                <div padding>
-                  <ion-item >
-                    <ion-input name="email" type="email" placeholder="your@email.com" ngModel required></ion-input>
-                  </ion-item>
-                  <ion-item >
-                    <ion-input name="password" type="password" placeholder="Password" ngModel required></ion-input>
-                  </ion-item>
-                </div>
-                <div padding>
-                  <ion-button size="large" type="submit" [disabled]="form.invalid" expand="block">Login</ion-button>
-                </div>
-              </ion-col>
-            </ion-row>
-      
-            <ion-row padding> 
-              <div text-center>
-            If you don't have an account, please <a routerLink='/register'>
-             <b>Register</b></a> first!
-              </div>
-          </ion-row>
+	<div class="container">
+		<!-- Cover Image -->
+		<ion-img src="assets/img/login-image.png" class="cover-img"></ion-img>
+
+		<form #form="ngForm" (ngSubmit)="login(form)">
+			<ion-grid>
+				<ion-row color="primary" justify-content-center>
+					<ion-col align-self-center size-md="12" size-lg="12" size-xs="12">
+						<ion-item class="df-input">
+                            <ion-label position="fixed">
+                                <i class="remixicon-mail-line"></i>
+                            </ion-label>
+							<ion-input name="email" type="email" placeholder="Email" ngModel clearInput required></ion-input>
+						</ion-item>
+						<ion-item class="df-input">
+                            <ion-label position="fixed">
+                                <i class="remixicon-lock-password-line"></i>
+                            </ion-label>
+							<ion-input name="password" type="password" placeholder="Password" ngModel required></ion-input>
+						</ion-item>
+						<ion-button class="ion-no-margin ion-color-gradient shadow-1" size="large" type="submit" [disabled]="form.invalid" expand="block">Login</ion-button>
+
+                        <ion-text text-center class="forget">
+                            <p>Forget Password?<br>Contact us at +88-01790-026598</p>
+                            <p>Or</p>
+                        </ion-text>
+
+                        <ion-text text-center class="social-login">
+                            <p><i class="remixicon-facebook-circle-line ri-2x ion-margin-end"></i> Sign in with facebook</p>
+                        </ion-text>
+					</ion-col>
+				</ion-row>
+
+				<ion-row>
+                    <ion-col text-center>
+                        <p class="ion-no-margin">Don't have an account?<br><a routerLink='/register'><b>Register here!</b></a></p>
+                    </ion-col>
+                </ion-row>
           </ion-grid>
         </form>
-  </div>
- 
+	</div>
+
 </ion-content>

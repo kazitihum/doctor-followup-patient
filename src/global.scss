@@ -9,3 +9,13 @@
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
+@import '~remixicon/fonts/remixicon.css';
+
+// Theme
+@import './theme/form.scss';
+@import './theme/shadow.scss';
+
+.ion-color-gradient {
+    --background: linear-gradient(330deg, #DE6FFF, #96FFD1);
+    background: linear-gradient(330deg, #DE6FFF, #96FFD1);
+}
