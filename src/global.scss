@@ -15,7 +15,13 @@
 @import './theme/form.scss';
 @import './theme/shadow.scss';
 
+// Custom Color
 .ion-color-gradient {
     --background: linear-gradient(330deg, #DE6FFF, #96FFD1);
     background: linear-gradient(330deg, #DE6FFF, #96FFD1);
+}
+
+// Layout Utility
+.w-100 {
+    width: 100%;
 }
