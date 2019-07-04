@@ -1,1 +1,14 @@
+ion-tab-button:not(.tab-selected) {
+    ion-label {
+        display: none;
+    }
+    i {
+        color: rgba(var(--ion-color-dark-rgb), .5);
+    }
+}
 
+ion-tab-button {
+    ion-label {
+        font-weight: bold;
+    }
+}

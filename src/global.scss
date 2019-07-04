@@ -14,6 +14,7 @@
 // Theme
 @import './theme/form.scss';
 @import './theme/shadow.scss';
+@import './theme/spacing.scss';
 
 // Custom Color
 .ion-color-gradient {
@@ -24,4 +25,23 @@
 // Layout Utility
 .w-100 {
     width: 100%;
+}
+.rounded {
+    border-radius: 7px !important;
+}
+.d-flex {
+    display: flex;
+}
+
+// Common
+.main-header {
+    --background: var(--ion-color-light);
+}
+
+.searchbar-input.sc-ion-searchbar-md {
+    box-shadow: none !important;
+}
+
+ion-card {
+    border-radius: 7px !important;
 }
