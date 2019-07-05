@@ -18,6 +18,7 @@ export class Tab1Page {
     age: any;
     docData: Observable<any>;
     searchTerm: string = '';
+    followup:any;
 
     constructor(private storage: Storage, private apiService: ApiService, private passdata: PassdataService, private router: Router) {
 
@@ -39,7 +40,30 @@ export class Tab1Page {
 
 
             console.log(bdate.getTime() + ' ', bdate + " ", this.age);
+        });
+
+        await this.storage.get('user_info').then(async (data) => {
+            this.patient_id = data.user_info.id;
+            console.log(this.patient_id);
         })
+
+        this.apiService.followupHis(this.patient_id).subscribe(
+            data => {
+
+                console.log(data);
+                this.followup = data;
+            },
+            error => {
+                console.log(error);
+            }
+        );
+    }
+
+    followDetails(data) {
+
+        this.passdata.setData('followup_his', data);
+        this.passdata.setData('followup_id', data.fu_id);
+        this.router.navigateByUrl('/followup-rlist');
     }
 
     doctorSearch(name) {

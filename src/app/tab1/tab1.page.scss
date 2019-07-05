@@ -1,8 +1,3 @@
-.welcome-card ion-img {
-  max-height: 35vh;
-  overflow: hidden;
-}
-
 ion-content {
     --padding-top: 0;
     .search-result {
@@ -47,11 +42,19 @@ ion-content {
         border-radius: 7px;
         overflow: hidden;
     }
-    .my-followup {
-        ion-button.add-followup {
-            --padding-end: 0 !important;
+    .followup-list {
+        overflow-x: scroll;
+        margin-left: -16px !important;
+        margin-right: -16px !important;
+        padding-left: 10px;
+        padding-right: 10px;
+        ion-card-header {
+            padding-bottom: 7px;
         }
-        h6 {
+        i {
+            color: var(--ion-color-primary);
+        }
+        p {
             color: rgba(var(--ion-color-dark-rgb), .5);
         }
     }

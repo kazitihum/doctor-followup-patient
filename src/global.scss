@@ -32,6 +32,11 @@
 .d-flex {
     display: flex;
 }
+.section-title {
+    h6 {
+        color: rgba(var(--ion-color-dark-rgb), .5);
+    }
+}
 
 // Common
 .main-header {
@@ -44,4 +49,8 @@
 
 ion-card {
     border-radius: 7px !important;
+}
+
+ion-item {
+    --background: transparent;
 }

@@ -1,11 +1,37 @@
-ion-item{
-    
-}
-
-ion-button{
-    --background: #062f77;
-}
-
-a{
-    color: #062f77;
+ion-content {
+    --padding-top: 0;
+    --background: var(--ion-color-light);
+    ion-grid {
+        --ion-grid-padding: 0;
+        ion-row {
+            margin-left: -5px;
+            margin-right: -5px;
+        }
+        ion-card {
+            --background: white;
+            margin: 0;
+            ion-card-content {
+                i {
+                    color: var(--ion-color-secondary);
+                }
+                h4 {
+                    font-size: 12px;
+                    font-weight: bold;
+                    color: var(--ion-color-dark);
+                }
+            }
+        }
+    }
+    ion-searchbar {
+        padding: 0;
+        margin-bottom: 15px;
+        border-radius: 7px;
+        overflow: hidden;
+    }
+    .search-result {
+        padding: 0;
+    }
+    &, ion-list.search-result, ion-list.search-result ion-item, ion-list.search-result ion-chip  {
+        --background: var(--ion-color-light);
+    }
 }

@@ -1,9 +1,201 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Tab Three
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-toolbar mode="ios" class="main-header">
+	<!-- <ion-buttons slot="start">
+        <ion-button fill="clear" color="dark">
+            <i class="remixicon-menu-line ri-2x"></i>
+        </ion-button>
+        <ion-button fill="clear" color="dark">
+            <i class="remixicon-arrow-go-back-line ri-2x"></i>
+        </ion-button>
+    </ion-buttons> -->
+	<div text-center>
+		<ion-title>
+			My Profile
+		</ion-title>
+	</div>
+	<ion-buttons slot="end">
+		<!-- <ion-button fill="clear" color="dark">
+            <i class="remixicon-notification-line ri-2x"></i>
+        </ion-button> -->
+		<ion-button fill="clear" color="dark" (click)="logout()">
+			<i class="remixicon-login-circle-line ri-2x"></i>
+        </ion-button>
+    </ion-buttons>
+</ion-toolbar>
 
-<ion-content></ion-content>
+<ion-content padding>
+  <ion-grid *ngIf="userInfo">
+        <ion-row justify-content-center>
+            <ion-avatar>
+                <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+            </ion-avatar>
+        </ion-row><br>
+        <ion-row>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label color="dark"><b>Name</b></ion-label>
+            </ion-col>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label>: {{userInfo.first_name}} {{userInfo.last_name}}</ion-label>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label color="dark"><b>Address</b></ion-label>
+            </ion-col>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label>: {{userInfo?.address}}</ion-label>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label color="dark"><b>District</b></ion-label>
+            </ion-col>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label>: {{userInfo.district}}</ion-label>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label color="dark"><b>Division</b></ion-label>
+            </ion-col>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label>: {{userInfo.division}}</ion-label>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label color="dark"><b>Email</b></ion-label>
+            </ion-col>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label>: {{userInfo.email}}</ion-label>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label color="dark"><b>Phone</b></ion-label>
+            </ion-col>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label>: {{userInfo.phone}}</ion-label>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label color="dark"><b>Birth Date</b></ion-label>
+            </ion-col>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label>: {{userInfo.birth_date}}</ion-label>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label color="dark"><b>Age</b></ion-label>
+            </ion-col>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label>: {{age}}</ion-label>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label color="dark"><b>Gender</b></ion-label>
+            </ion-col>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label>: {{userInfo.gender}}</ion-label>
+            </ion-col>
+        </ion-row>
+        <ion-row >
+            <ion-col  size-md="6" size-lg="6" size-xs="6">
+                <ion-label color="dark"><b>Occupation</b></ion-label>
+            </ion-col>
+            <ion-col  size-md="6" size-lg="6" size-xs="6">
+                <ion-label>: {{userInfo.occupation}}</ion-label>
+          </ion-col>
+        </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="!userInfo">
+        <ion-row justify-content-center>
+            <ion-avatar>
+                <ion-skeleton-text animated></ion-skeleton-text>
+            </ion-avatar>
+        </ion-row><br>
+        <ion-row>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label color="dark"><b>Name</b></ion-label>
+            </ion-col>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label><ion-skeleton-text animated style="width: 100%"></ion-skeleton-text></ion-label>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label color="dark"><b>Address</b></ion-label>
+            </ion-col>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label><ion-skeleton-text animated style="width: 100%"></ion-skeleton-text></ion-label>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label color="dark"><b>District</b></ion-label>
+            </ion-col>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label><ion-skeleton-text animated style="width: 100%"></ion-skeleton-text></ion-label>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label color="dark"><b>Division</b></ion-label>
+            </ion-col>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label><ion-skeleton-text animated style="width: 100%"></ion-skeleton-text></ion-label>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label color="dark"><b>Email</b></ion-label>
+            </ion-col>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label><ion-skeleton-text animated style="width: 100%"></ion-skeleton-text></ion-label>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label color="dark"><b>Phone</b></ion-label>
+            </ion-col>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label><ion-skeleton-text animated style="width: 100%"></ion-skeleton-text></ion-label>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label color="dark"><b>Birth Date</b></ion-label>
+            </ion-col>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label><ion-skeleton-text animated style="width: 100%"></ion-skeleton-text></ion-label>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label color="dark"><b>Age</b></ion-label>
+            </ion-col>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label><ion-skeleton-text animated style="width: 100%"></ion-skeleton-text></ion-label>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label color="dark"><b>Gender</b></ion-label>
+            </ion-col>
+            <ion-col size-md="6" size-lg="6" size-xs="6">
+                <ion-label><ion-skeleton-text animated style="width: 100%"></ion-skeleton-text></ion-label>
+            </ion-col>
+        </ion-row>
+        <ion-row >
+            <ion-col  size-md="6" size-lg="6" size-xs="6">
+                <ion-label color="dark"><b>Occupation</b></ion-label>
+            </ion-col>
+            <ion-col  size-md="6" size-lg="6" size-xs="6">
+                <ion-label><ion-skeleton-text animated style="width: 100%"></ion-skeleton-text></ion-label>
+          </ion-col>
+        </ion-row>
+  </ion-grid>
+</ion-content>

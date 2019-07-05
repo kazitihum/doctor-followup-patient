@@ -27,7 +27,7 @@
     <ion-searchbar [(ngModel)]="searchTerm" placeholder="Search Doctor" (ionChange)="doctorSearch($event)" animated autocomplete="on" autocorrect="on"></ion-searchbar>
 
     <ion-list *ngIf="docData" class="search-result">
-      <ion-item *ngFor="let doc of (docData  )" (click)="doctorDetails(doc.id)" >
+      <ion-item *ngFor="let doc of (docData)" (click)="doctorDetails(doc.id)" >
         <ion-label>{{doc.first_name}} {{doc.last_name}}</ion-label>
       </ion-item>
     </ion-list>
@@ -44,26 +44,102 @@
         </ion-item>
     </ion-list>
 
-    <div class="my-followup">
+    <div class="section-title ion-margin-bottom">
         <ion-grid>
             <ion-row justify-content-center>
                 <ion-col class="d-flex" align-items-center><h6 class="ion-no-margin">My Follow Ups</h6></ion-col>
                 <ion-col class="d-flex" justify-content-end>
                     <ion-buttons>
                         <ion-button color="dark">
-                            <i class="remixicon-eye-line ml-1"></i>
+                            <i class="remixicon-eye-line mr-1"></i>
                             View All
                         </ion-button>
-                        <ion-button color="primary" class="add-followup">
+                        <ion-button color="primary" class="add-followup" [routerLink]="'/create-followup'" routerDirection="forward">
                             <i class="remixicon-add-circle-line ri-2x"></i>
                         </ion-button>
                     </ion-buttons>
                 </ion-col>
             </ion-row>
+
+            <ion-row *ngIf="followup" nowrap align-items-stretch class="followup-list">
+                <ion-col size="8" *ngFor="let followup of followup" (click)="followDetails(followup)">
+                    <ion-ripple-effect></ion-ripple-effect>
+                    <ion-card>
+                        <ion-card-header>
+                            <ion-card-title color="dark">
+                                <h5 class="ion-no-margin">{{followup.disease_name.length > 25 ? followup.disease_name.substring(0,25)+"..." : followup.disease_name}}</h5>
+                            </ion-card-title>
+                            <ion-card-subtitle>
+                                <p class="ion-no-margin d-flex" align-items-center>
+                                    <i class="remixicon-time-line mr-1"></i>
+                                    {{followup.date}}
+                                </p>
+                                <p class="ion-no-margin d-flex" align-items-center>
+                                    <i class="remixicon-user-star-line mr-1"></i>
+                                    {{followup.doctor.name}}
+                                </p>
+                            </ion-card-subtitle>
+                        </ion-card-header>
+                        <ion-card-content>
+                            <p>{{(followup.child.description.length > 25 ? followup.child.description.substring(0,25)+"..." : followup.child.description)}}</p>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+
+            <!-- Skeleton -->
+            <ion-row *ngIf="!followup" nowrap align-items-stretch class="followup-list">
+                <ion-col size="8">
+                    <ion-ripple-effect></ion-ripple-effect>
+                    <ion-card>
+                        <ion-card-header>
+                            <ion-card-title color="dark">
+                                <h5 class="ion-no-margin"><ion-skeleton-text animated style="width: 50%"></ion-skeleton-text></h5>
+                            </ion-card-title>
+                            <ion-card-subtitle>
+                                <p class="ion-no-margin d-flex" align-items-center>
+                                    <i class="remixicon-time-line mr-1"></i>
+                                    <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+                                </p>
+                                <p class="ion-no-margin d-flex" align-items-center>
+                                    <i class="remixicon-user-star-line mr-1"></i>
+                                    <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+                                </p>
+                            </ion-card-subtitle>
+                        </ion-card-header>
+                        <ion-card-content>
+                            <p><ion-skeleton-text animated style="width: 80%"></ion-skeleton-text></p>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-col>
+                <ion-col size="8">
+                    <ion-ripple-effect></ion-ripple-effect>
+                    <ion-card>
+                        <ion-card-header>
+                            <ion-card-title color="dark">
+                                <h5 class="ion-no-margin"><ion-skeleton-text animated style="width: 50%"></ion-skeleton-text></h5>
+                            </ion-card-title>
+                            <ion-card-subtitle>
+                                <p class="ion-no-margin d-flex" align-items-center>
+                                    <i class="remixicon-time-line mr-1"></i>
+                                    <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+                                </p>
+                                <p class="ion-no-margin d-flex" align-items-center>
+                                    <i class="remixicon-user-star-line mr-1"></i>
+                                    <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+                                </p>
+                            </ion-card-subtitle>
+                        </ion-card-header>
+                        <ion-card-content>
+                            <p><ion-skeleton-text animated style="width: 80%"></ion-skeleton-text></p>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
         </ion-grid>
     </div>
 
-    <div class="my-followup">
+    <div class="section-title">
         <ion-grid>
             <ion-row justify-content-center>
                 <ion-col class="d-flex" align-items-center><h6 class="ion-no-margin">Other Options</h6></ion-col>
@@ -85,7 +161,7 @@
           <ion-col align-self-center size-md="6" size-lg="6" size-xs="6">
               <ion-card justify-content-center [routerLink]="'/create-followup'" routerDirection="forward" class="shadow-1">
                   <ion-card-content text-center >
-                    <i class="remixicon-phone-line ri-3x"></i>
+                    <i class="remixicon-add-circle-line ri-3x"></i>
                     <ion-card-title><h4>Create New Follow Up</h4></ion-card-title>
                   </ion-card-content>
                 </ion-card>
@@ -98,7 +174,7 @@
           <ion-col align-self-center size-md="6" size-lg="6" size-xs="6">
               <ion-card justify-content-center [routerLink]="'/myfollowup-his'" class="shadow-1">
                   <ion-card-content text-center>
-                    <i class="remixicon-phone-line ri-3x"></i>
+                    <i class="remixicon-eye-line ri-3x"></i>
                     <ion-card-title><h4>My FollowUp</h4></ion-card-title>
                   </ion-card-content>
                 </ion-card>
@@ -106,7 +182,7 @@
           <ion-col align-self-center size-md="6" size-lg="6" size-xs="6">
               <ion-card justify-content-center class="shadow-1">
                   <ion-card-content text-center>
-                    <i class="remixicon-phone-line ri-3x"></i>
+                    <i class="remixicon-hospital-line ri-3x"></i>
                     <ion-card-title><h4>Necessary Health Tips</h4></ion-card-title>
                   </ion-card-content>
                 </ion-card>
@@ -119,7 +195,7 @@
             <ion-col align-self-center size-md="6" size-lg="6" size-xs="6">
                 <ion-card justify-content-center class="shadow-1">
                     <ion-card-content text-center>
-                        <i class="remixicon-phone-line ri-3x"></i>
+                        <i class="remixicon-customer-service-2-line ri-3x"></i>
                         <ion-card-title><h4>Emergency Phone No.</h4></ion-card-title>
                     </ion-card-content>
                   </ion-card>
@@ -127,7 +203,7 @@
             <ion-col align-self-center size-md="6" size-lg="6" size-xs="6">
                 <ion-card justify-content-center class="shadow-1">
                     <ion-card-content text-center>
-                        <i class="remixicon-phone-line ri-3x"></i>
+                        <i class="remixicon-feedback-line ri-3x"></i>
                         <ion-card-title><h4>Report Your Problem</h4></ion-card-title>
                     </ion-card-content>
                   </ion-card>
