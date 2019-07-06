@@ -1,0 +1,48 @@
+ion-content {
+    --padding-top: 0;
+    --background: var(--ion-color-light);
+    ion-grid {
+        --ion-grid-padding: 0;
+        ion-row {
+            margin-left: -5px;
+            margin-right: -5px;
+        }
+        ion-card {
+            --background: white;
+            margin: 0;
+            margin-bottom: 15px;
+            ion-card-content {
+                i {
+                    color: var(--ion-color-secondary);
+                }
+                h4 {
+                    font-size: 12px;
+                    font-weight: 500;
+                    color: var(--ion-color-dark);
+                }
+            }
+        }
+        .appoints {
+            h2 {
+                font-size: 18px;
+                font-weight: bold;
+                color: var(--ion-color-dark);
+            }
+            h3 {
+                font-size: 16px;
+                margin-bottom: 5px;
+                padding-bottom: 7px;
+                border-bottom: 1px solid #ddd;
+            }
+            i {
+                color: var(--ion-color-primary);
+            }
+            p {
+                color: rgba(var(--ion-color-dark-rgb), .5);
+            }
+            ion-label p:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}

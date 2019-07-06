@@ -1,28 +1,32 @@
 <ion-toolbar mode="ios" class="main-header">
-	<ion-buttons slot="start">
+    <ion-buttons slot="start">
         <!-- <ion-button fill="clear" color="dark">
             <i class="remixicon-menu-line ri-2x"></i>
         </ion-button> -->
-      <ion-back-button defaultHref="/tabs"></ion-back-button>
+        <ion-back-button defaultHref="/tabs"></ion-back-button>
     </ion-buttons>
-	<div text-center>
-		<ion-title>
-			Create Follow Up
-		</ion-title>
-	</div>
-	<ion-buttons slot="end">
-		<!-- <ion-button fill="clear" color="dark">
+    <div text-center>
+        <ion-title>
+            Create Follow Up
+        </ion-title>
+    </div>
+    <ion-buttons slot="end">
+        <!-- <ion-button fill="clear" color="dark">
             <i class="remixicon-notification-line ri-2x"></i>
         </ion-button> -->
-		<ion-button fill="clear" color="dark" (click)="logout()">
-			<i class="remixicon-login-circle-line ri-2x"></i>
+        <ion-button fill="clear" color="dark" (click)="logout()">
+            <i class="remixicon-login-circle-line ri-2x"></i>
         </ion-button>
     </ion-buttons>
 </ion-toolbar>
 
 <ion-content padding >
 
-    <ion-searchbar animated [(ngModel)]="searchTerm" (ionChange)="doctorSearch($event)" placeholder="Search and select doctor" class="shadow-1"></ion-searchbar>
+    <div class="section-title">
+        <h6>Search and select doctor</h6>
+    </div>
+
+    <ion-searchbar animated [(ngModel)]="searchTerm" (ionChange)="doctorSearch($event)" placeholder="Search doctor" class="shadow-1"></ion-searchbar>
 
     <ion-list *ngIf="docData" class="search-result">
         <ion-item *ngFor="let doc of (docData  )" (click)="setDocid(doc.id,doc.first_name,doc.last_name)" >
@@ -37,53 +41,63 @@
         </ion-chip>
     </ion-list>
 
-
-
     <div justify-content-center align-items-center>
-        <form #form="ngForm"  (ngSubmit)="createFollowup(form)" >
+        <form #form="ngForm" (ngSubmit)="createFollowup(form)" >
             <ion-grid>
-              <ion-row justify-content-center>
-                <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+                <ion-row justify-content-center>
+                    <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
 
-                    <div class="section-title">
-                        <h6>Followup Details</h6>
-                    </div>
-                    <ion-item class="df-input">
-                        <ion-input name="disease_name" type="text" placeholder="Disease Name" ngModel required></ion-input>
-                    </ion-item>
-                    <ion-item class="df-input">
-                        <ion-textarea name="symptoms" rows="3" type="text" placeholder="Disease Symptoms" ngModel required></ion-textarea>
-                      </ion-item>
-                    <ion-item class="df-input">
-                        <ion-textarea name="description" rows="5" type="text" placeholder="Disease Description" ngModel required></ion-textarea>
-                    </ion-item>
-                    <ion-button size="default" color="primary" expand="block" (click)="chooser()">Choose File</ion-button>
-                    <hr>
+                        <div class="section-title">
+                            <h6>Followup Details</h6>
+                        </div>
+                        <ion-item class="df-input">
+                            <ion-input name="disease_name" type="text" placeholder="Disease Name" ngModel required></ion-input>
+                        </ion-item>
+                        <ion-item class="df-input">
+                            <ion-textarea name="symptoms" rows="3" type="text" placeholder="Disease Symptoms" ngModel required></ion-textarea>
+                            </ion-item>
+                        <ion-item class="df-input">
+                            <ion-textarea name="description" rows="5" type="text" placeholder="Disease Description" ngModel required></ion-textarea>
+                        </ion-item>
+                        <ion-row>
+                            <ion-col>
+                                <p class="ion-no-margin">Take a picture or choose the document required by doctor.</p>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col>
+                                <ion-button size="default" color="secondary" expand="block">Take Pickture</ion-button>
+                            </ion-col>
+                            <ion-col>
+                                <ion-button size="default" color="primary" expand="block" (click)="chooser()">Choose File</ion-button>
+                            </ion-col>
+                        </ion-row>
+                        <hr>
 
-                    <ion-item *ngFor="let file of fileBuff;let i = index">
-                        <ion-label *ngIf="file">{{file.filename}}</ion-label>
-                    </ion-item>
-                    <hr>
+                        <ion-item *ngFor="let file of fileBuff;let i = index">
+                            <ion-label *ngIf="file">{{file.filename}}</ion-label>
+                        </ion-item>
+                        <hr>
 
-                    <div class="section-title">
-                        <h6>Payment Method</h6>
-                    </div>
-                    <ion-item class="df-select">
-                        <ion-select placeholder="Select Payment Method" name="pay_status" ngModel >
-                            <ion-select-option value="female">Bkash/Rocket</ion-select-option>
-                            <ion-select-option value="male">Credit Card</ion-select-option>
-                        </ion-select>
-                    </ion-item>
-                    <ion-item class="df-input">
-                      <ion-input name="transaction_number" type="text" placeholder="Transaction Number" ngModel required></ion-input>
-                    </ion-item>
-                    <hr>
+                        <div class="section-title">
+                            <h6>Payment Method</h6>
+                        </div>
+                        <ion-item class="df-select">
+                            <ion-select placeholder="Select Payment Method" name="pay_status" ngModel >
+                                <ion-select-option value="female">Bkash/Rocket</ion-select-option>
+                                <ion-select-option value="male">Credit Card</ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                        <ion-item class="df-input">
+                            <ion-input name="transaction_number" type="text" placeholder="Transaction Number" ngModel required></ion-input>
+                        </ion-item>
+                        <hr>
 
-                    <ion-button color="primary" size="large" type="submit" [disabled]="form.invalid" expand="block">Submit</ion-button>
-                </ion-col>
-              </ion-row>
+                        <ion-button color="primary" size="large" type="submit" [disabled]="form.invalid" expand="block">Submit</ion-button>
+                    </ion-col>
+                </ion-row>
             </ion-grid>
-          </form>
+        </form>
     </div>
 
-  </ion-content>
+</ion-content>

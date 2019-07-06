@@ -50,7 +50,7 @@
                 <ion-col class="d-flex" align-items-center><h6 class="ion-no-margin">My Follow Ups</h6></ion-col>
                 <ion-col class="d-flex" justify-content-end>
                     <ion-buttons>
-                        <ion-button color="dark">
+                        <ion-button color="dark" [routerLink]="'/myfollowup-his'" routerDirection="forward">
                             <i class="remixicon-eye-line mr-1"></i>
                             View All
                         </ion-button>
@@ -62,8 +62,7 @@
             </ion-row>
 
             <ion-row *ngIf="followup" nowrap align-items-stretch class="followup-list">
-                <ion-col size="8" *ngFor="let followup of followup" (click)="followDetails(followup)">
-                    <ion-ripple-effect></ion-ripple-effect>
+                <ion-col size="8" *ngFor="let followup of followup" (click)="followDetails(followup)" tappable>
                     <ion-card>
                         <ion-card-header>
                             <ion-card-title color="dark">

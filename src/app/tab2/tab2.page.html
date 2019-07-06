@@ -9,7 +9,7 @@
     </ion-buttons> -->
 	<div text-center>
 		<ion-title>
-			History
+			Appointment History
 		</ion-title>
 	</div>
 	<ion-buttons slot="end">
@@ -26,14 +26,8 @@
 
     <div class="section-title">
         <ion-grid>
-            <ion-row justify-content-center>
-                <ion-col class="d-flex" align-items-center>
-                    <h6 class="ion-no-margin">Appointment History</h6>
-                </ion-col>
-            </ion-row>
-
-            <ion-row>
-                <ion-col text-center *ngIf="appoint == ''">
+            <ion-row *ngIf="appoint == ''">
+                <ion-col text-center>
                     <h5>No Data Found</h5>
                 </ion-col>
             </ion-row>

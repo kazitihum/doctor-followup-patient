@@ -21,6 +21,10 @@
     --background: linear-gradient(330deg, #DE6FFF, #96FFD1);
     background: linear-gradient(330deg, #DE6FFF, #96FFD1);
 }
+.bg-white {
+    --background: white;
+    background: white;
+}
 
 // Layout Utility
 .w-100 {
@@ -28,6 +32,7 @@
 }
 .rounded {
     border-radius: 7px !important;
+    overflow: hidden;
 }
 .d-flex {
     display: flex;

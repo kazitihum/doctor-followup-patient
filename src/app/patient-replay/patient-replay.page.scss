@@ -1,0 +1,15 @@
+ion-content {
+    --padding-top: 0;
+    --background: var(--ion-color-light);
+    ion-grid {
+        --ion-grid-padding: 0;
+        ion-row {
+            margin-left: -5px;
+            margin-right: -5px;
+        }
+        ion-card {
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+}

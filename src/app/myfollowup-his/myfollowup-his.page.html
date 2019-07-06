@@ -1,90 +1,123 @@
-<ion-header>
-    <ion-toolbar color="primary">
-        <ion-buttons slot="start">
-          <ion-back-button defaultHref="/tabs"></ion-back-button>
-          </ion-buttons>
-          <ion-title>My FollowUp</ion-title>
-      </ion-toolbar>
-</ion-header>
+<ion-toolbar mode="ios" class="main-header">
+	<ion-buttons slot="start">
+        <!-- <ion-button fill="clear" color="dark">
+            <i class="remixicon-menu-line ri-2x"></i>
+        </ion-button>
+        <ion-button fill="clear" color="dark">
+            <i class="remixicon-arrow-go-back-line ri-2x"></i>
+        </ion-button> -->
+        <ion-back-button defaultHref="/tabs"></ion-back-button>
+    </ion-buttons>
+	<div text-center>
+		<ion-title>
+			My FollowUp
+		</ion-title>
+	</div>
+	<ion-buttons slot="end">
+		<!-- <ion-button fill="clear" color="dark">
+            <i class="remixicon-notification-line ri-2x"></i>
+        </ion-button> -->
+		<ion-button fill="clear" color="dark" (click)="logout()">
+			<i class="remixicon-login-circle-line ri-2x"></i>
+        </ion-button>
+    </ion-buttons>
+</ion-toolbar>
 
-<ion-content>
-    <ion-card *ngFor="let followup of followup" (click)="followDetails(followup)">
-      <ion-item lines="none">
-        <ion-card-title color="danger" slot="start">{{followup.disease_name.length > 25 ? followup.disease_name.substring(0,25)+"..." : followup.disease_name}}</ion-card-title>
-        <span slot="end">{{followup.date}}</span>
-      </ion-item> 
-        
-      <ion-card-header>
-        
-        <ion-card-subtitle color="secondary">By: {{followup.doctor.name}}</ion-card-subtitle>
-      </ion-card-header>
-    
-      <ion-card-content>
-        {{(followup.child.description.length > 100 ? followup.child.description.substring(0,100)+"..." : followup.child.description)}}
-      </ion-card-content>
-    </ion-card>
+<ion-content padding>
 
-    <!-- Skeleton screen -->
-<div *ngIf="!followup">
-  <div class="ion-padding custom-skeleton">
-    <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
-    <ion-skeleton-text animated></ion-skeleton-text>
-    <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
-    <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
-    <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
-  </div>
+    <div class="section-title">
+        <ion-grid>
 
-  <ion-list>
-    <ion-list-header>
-      <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
-    </ion-list-header>
-    <ion-item>
-      <ion-avatar slot="start">
-        <ion-skeleton-text animated></ion-skeleton-text>
-      </ion-avatar>
-      <ion-label>
-        <h3>
-          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
-        </h3>
-        <p>
-          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
-        </p>
-        <p>
-          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
-        </p>
-      </ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-thumbnail slot="start">
-        <ion-skeleton-text animated></ion-skeleton-text>
-      </ion-thumbnail>
-      <ion-label>
-        <h3>
-          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
-        </h3>
-        <p>
-          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
-        </p>
-        <p>
-          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
-        </p>
-      </ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-skeleton-text animated style="width: 27px; height: 27px" slot="start"></ion-skeleton-text>
-      <ion-label>
-        <h3>
-          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
-        </h3>
-        <p>
-          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
-        </p>
-        <p>
-          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
-        </p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
-</div>
+            <ion-row *ngIf="followup == ''">
+                <ion-col text-center>
+                    <h5>No Data Found</h5>
+                </ion-col>
+            </ion-row>
+
+            <ion-row *ngIf="followup" class="appoints">
+                <ion-col>
+                    <ion-card *ngFor="let followup of followup" (click)="followDetails(followup)" tappable>
+                        <ion-list>
+                            <ion-item lines="none">
+                                <ion-label class="ion-no-margin">
+                                    <h2>{{followup.disease_name.length > 25 ? followup.disease_name.substring(0,25)+"..." : followup.disease_name}}</h2>
+                                    <h3>{{(followup.child.description.length > 100 ? followup.child.description.substring(0,100)+"..." : followup.child.description)}}</h3>
+                                    <ion-row>
+                                        <ion-col>
+                                            <p class="d-flex ion-no-margin" align-items-center>
+                                                <i class="remixicon-calendar-event-line mr-1"></i>
+                                                {{followup.date}}
+                                            </p>
+                                        </ion-col>
+                                        <ion-col>
+                                            <p class="d-flex ion-no-margin" align-items-center>
+                                                <i class="remixicon-user-star-line mr-1"></i>
+                                                Dr. {{followup.doctor.name}}
+                                            </p>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-label>
+                            </ion-item>
+                        </ion-list>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+
+            <!-- Skeleton -->
+            <ion-row *ngIf="!followup" class="appoints">
+                <ion-col>
+                    <ion-card>
+                        <ion-list>
+                            <ion-item lines="none">
+                                <ion-label class="ion-no-margin">
+                                    <h2><ion-skeleton-text animated style="width: 50%"></ion-skeleton-text></h2>
+                                    <h3><ion-skeleton-text animated style="width: 100%"></ion-skeleton-text></h3>
+                                    <ion-row>
+                                        <ion-col>
+                                            <p class="d-flex ion-no-margin" align-items-center>
+                                                <i class="remixicon-calendar-event-line mr-1"></i>
+                                                <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                                            </p>
+                                        </ion-col>
+                                        <ion-col>
+                                            <p class="d-flex ion-no-margin" align-items-center>
+                                                <i class="remixicon-user-star-line mr-1"></i>
+                                                <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                                            </p>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-label>
+                            </ion-item>
+                        </ion-list>
+                    </ion-card>
+                    <ion-card>
+                        <ion-list>
+                            <ion-item lines="none">
+                                <ion-label class="ion-no-margin">
+                                    <h2><ion-skeleton-text animated style="width: 50%"></ion-skeleton-text></h2>
+                                    <h3><ion-skeleton-text animated style="width: 100%"></ion-skeleton-text></h3>
+                                    <ion-row>
+                                        <ion-col>
+                                            <p class="d-flex ion-no-margin" align-items-center>
+                                                <i class="remixicon-calendar-event-line mr-1"></i>
+                                                <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                                            </p>
+                                        </ion-col>
+                                        <ion-col>
+                                            <p class="d-flex ion-no-margin" align-items-center>
+                                                <i class="remixicon-user-star-line mr-1"></i>
+                                                <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                                            </p>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-label>
+                            </ion-item>
+                        </ion-list>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+
+        </ion-grid>
+    </div>
 
 </ion-content>
